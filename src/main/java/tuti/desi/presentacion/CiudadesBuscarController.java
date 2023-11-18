@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +33,7 @@ public class CiudadesBuscarController {
     private CiudadService servicioCiudad;
    
 	
-    @RequestMapping(method=RequestMethod.GET)
+    @GetMapping
     public String preparaForm(Model modelo) {
     	CiudadesBuscarForm form =  new CiudadesBuscarForm();
 //    	 form.setProvincias(servicioProvincia.getAll());    //  en lugar de esto hacemos @ModelAttribute("allProvincias")
@@ -45,7 +47,7 @@ public class CiudadesBuscarController {
         return this.servicioProvincia.getAll();
     }
     
-    @RequestMapping( method=RequestMethod.POST)
+    @PostMapping
     public String submit( @ModelAttribute("formBean") @Valid CiudadesBuscarForm  formBean,BindingResult result, ModelMap modelo,@RequestParam String action) throws Excepcion {
     	
     	
@@ -59,6 +61,7 @@ public class CiudadesBuscarController {
 				ObjectError error = new ObjectError("globalError", e.getMessage());
 	            result.addError(error);
 			}
+    		
     		
     		modelo.addAttribute("formBean",formBean);
         	return "ciudadesBuscar";
