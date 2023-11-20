@@ -18,7 +18,6 @@ public interface ProvinciaService {
 	 * Obtiene la lista completa de Provincias
 	 * @return Todas las Provincias
 	 */
-	@Deprecated
 	List<Provincia> getAll();
 	
 	/**
@@ -27,4 +26,9 @@ public interface ProvinciaService {
 	 * @return Provincia encontrada
 	 */
 	Provincia getById(Long idProv) ;
+	
+	Provincia findByNombre(String name);
+	
+	void save(Provincia provincia);
+	
 }

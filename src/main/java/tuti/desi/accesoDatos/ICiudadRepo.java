@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import tuti.desi.entidades.Ciudad;
+import tuti.desi.entidades.Provincia;
 
 @Repository
 public interface ICiudadRepo extends JpaRepository<Ciudad, Long> {
@@ -16,7 +17,7 @@ public interface ICiudadRepo extends JpaRepository<Ciudad, Long> {
 	List<Ciudad> findByNombreOrIdProvincia(String nombre, Long idProvinciaSeleccionada);
 	
 	@Query("SELECT c FROM Ciudad c WHERE c.nombre like ?1 and c.provincia.id=?2")
-	List<Ciudad> findByNombreAndIdProvincia(String nombre, Long idProvinciaSeleccionada);
+	List<Ciudad> findByNombreProvinciaAndIdProvincia(String nombre, Long idProvinciaSeleccionada);
 	
-
+	Ciudad findByNombreAndProvinciaId(String nombre, Long idProvincia);
 }

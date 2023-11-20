@@ -3,10 +3,11 @@ package tuti.desi.accesoDatos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tuti.desi.entidades.Provincia;
+import tuti.desi.entidades.Aeronave;
+
 
 @Repository
-public interface IProvinciaRepo extends JpaRepository<Provincia, Long> {
+public interface IAeronavesRepo extends JpaRepository<Aeronave, Long>{
 
-	Provincia findByNombre(String nombre);
+	Aeronave findByNombre(String nombre);
 }

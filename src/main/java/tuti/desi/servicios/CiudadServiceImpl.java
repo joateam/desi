@@ -30,7 +30,6 @@ public class CiudadServiceImpl implements CiudadService {
 
 
 	@Override
-	@Deprecated
 	public Ciudad getById(Long idCiudad) {
 
 		return repo.findById(idCiudad).get();
@@ -60,11 +59,16 @@ public class CiudadServiceImpl implements CiudadService {
 
 	@Override
 	public void save(Ciudad c) throws Excepcion {
-		if(c.getId()==null && !repo.findByNombreAndIdProvincia(c.getNombre(), c.getProvincia().getId()).isEmpty()) //estoy dando de alta una nueva ciudad y ya existe una igual?
+		if(c.getId()==null && !repo.findByNombreProvinciaAndIdProvincia(c.getNombre(), c.getProvincia().getId()).isEmpty()) //estoy dando de alta una nueva ciudad y ya existe una igual?
 			throw new Excepcion("Ya existe una ciudad con el mismo nombre, para la misma provincia");  
 		else
 			repo.save(c);
 		
 	}
+	
+	 @Override
+	    public Ciudad findByNombreAndProvinciaId(String nombre, Long idProvincia) {
+	        return repo.findByNombreAndProvinciaId(nombre, idProvincia);
+	    }
 
 }
