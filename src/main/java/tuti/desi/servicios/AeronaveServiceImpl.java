@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tuti.desi.accesoDatos.IAeronavesRepo;
 import tuti.desi.entidades.Aeronave;
-import tuti.desi.entidades.Ciudad;
 import tuti.desi.excepciones.Excepcion;
 
 @Service
@@ -31,6 +31,7 @@ public class AeronaveServiceImpl implements AeronaveService {
 	}
 
 	@Override
+    @Transactional
 	public void save(Aeronave a) throws Excepcion {
 		repo.save(a);
 	}

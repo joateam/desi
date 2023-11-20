@@ -8,37 +8,57 @@ import jakarta.persistence.Id;
 @Entity
 public class Aeronave {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	
-	public Aeronave() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Aeronave(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
 
-	private String nombre;
+    private String nombre;
+    
+    private Integer cantFilas, nroAsientosXFila;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Aeronave() {
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Aeronave(String nombre, Integer cantFilas, Integer nroAsientosXFila) {
+        super();
+        this.nombre = nombre;
+        this.cantFilas = cantFilas;
+        this.nroAsientosXFila = nroAsientosXFila;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	
-	
+    // Métodos getter y setter
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getCantFilas() {
+        return cantFilas;
+    }
+
+    public void setCantFilas(Integer cantFilas) {
+        this.cantFilas = cantFilas;
+    }
+
+    public Integer getNroAsientosXFila() {
+        return nroAsientosXFila;
+    }
+
+    public void setNroAsientosXFila(Integer nroAsientosXFila) {
+        this.nroAsientosXFila = nroAsientosXFila;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

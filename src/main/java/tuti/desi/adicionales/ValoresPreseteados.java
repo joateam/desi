@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import tuti.desi.entidades.Aeronave;
+
 //Agregamos component para que pueda ser tomado por @Bean
 @Component
 public class ValoresPreseteados {
@@ -21,8 +23,17 @@ public class ValoresPreseteados {
 			"Buenos Aires", "La Plata", "Mar del Plata", "Bahía Blanca", "Quilmes", "Lomas de Zamora", "Avellaneda", "Merlo", "Moreno", "Florencio Varela", "San Isidro", "Tigre", "San Miguel", "Pilar", "Lanús", "Berazategui", "José C. Paz", "Ituzaingó", "Malvinas Argentinas", "San Fernando", "Esteban Echeverría", "Ezeiza", "Almirante Brown", "Vicente López", "Quilmes", "Berisso", "Florencio Varela", "San Nicolás", "Zárate", "Pergamino", "Junín", "Chivilcoy", "Mercedes", "San Pedro", "Dolores", "Tandil", "Azul", "Olavarría", "Necochea", "Mar de Ajó", "Villa Gesell", "Pinamar", "San Clemente del Tuyú", "Las Toninas", "Santa Teresita", "La Costa", "Monte Hermoso", "Sierra de la Ventana", "Carhué", "Tres Arroyos", "Miramar", "Balcarce", "Villa La Angostura", "San Antonio de Areco", "Chascomús", "Luján", "Tres de Febrero", "Malvinas Argentinas", "Hurlingham", "Morón", "Tigre", "La Matanza", "Berazategui", "Florencio Varela", "Quilmes", "Lanús", "Avellaneda", "Almirante Brown", "Esteban Echeverría", "Ezeiza", "Presidente Perón", "Cañuelas", "San Vicente", "La Plata", "Ensenada", "Berisso", "Magdalena", "La Plata", "Quilmes", "Avellaneda", "Lomas de Zamora", "Berazategui", "Florencio Varela", "Esteban Echeverría", "Ezeiza", "Cañuelas", "La Matanza", "Merlo", "Moreno", "Tres de Febrero", "Morón", "Hurlingham", "Ituzaingó", "Merlo", "José C. Paz", "San Miguel", "Malvinas Argentinas"
 			);
 
-	public List <String> aeronaves = List.of(
-			"Boeing 737", "Airbus A320", "Boeing 777", "Airbus A330", "Boeing 787 Dreamliner", "Airbus A350 XWB", "Boeing 747", "Embraer E190", "Bombardier CRJ900", "McDonnell Douglas MD-11"
-			);
+	public List<Aeronave> aeronaves = List.of(
+            new Aeronave("Boeing 737", 22, 10),
+            new Aeronave("Airbus A320", 20, 8),
+            new Aeronave("Boeing 777", 30, 12),
+            new Aeronave("Airbus A330", 28, 10),
+            new Aeronave("Boeing 787 Dreamliner", 32, 9),
+            new Aeronave("Airbus A350 XWB", 26, 8),
+            new Aeronave("Boeing 747", 35, 10),
+            new Aeronave("Embraer E190", 18, 6),
+            new Aeronave("Bombardier CRJ900", 16, 5),
+            new Aeronave("McDonnell Douglas MD-11", 40, 11)
+    );
 	
 }

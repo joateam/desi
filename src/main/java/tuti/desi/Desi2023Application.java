@@ -74,10 +74,10 @@ public class Desi2023Application {
 			}
 			
 			//Cargamos nonbres las Aeronaves
-			List<String> nombresAeronaves = valoresPreseteados.aeronaves;
-			for (String nombreAeronave : nombresAeronaves) {
-				if (aeronaveServicImpl.findByNombre(nombreAeronave) == null) {
-					aeronaveServicImpl.save(new Aeronave(nombreAeronave));
+			List<Aeronave> aeronaves = valoresPreseteados.aeronaves;
+			for (Aeronave aeronave : aeronaves) {
+				if (aeronaveServicImpl.findByNombre(aeronave.getNombre()) == null) {
+					aeronaveServicImpl.save(aeronave);
 				}
 			}
 			
