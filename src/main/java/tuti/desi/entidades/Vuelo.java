@@ -118,8 +118,4 @@ public class Vuelo {
 		this.avion = avion;
 	}
 
-	public Integer capacidadVuelo() {
-		return (avion.getCantFilas() * avion.getNroAsientosXFila());
-	}
-
 }
