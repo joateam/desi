@@ -142,11 +142,7 @@
 	<script>
 		function updateCapacidadVuelo() {
 			var avionSelect = document.getElementById("avion");
-
-			// Obtener la opción seleccionada
 			var selectedOption = avionSelect.options[avionSelect.selectedIndex];
-
-			// Obtener el valor y data-capacidad de la opción seleccionada
 			var selectedValue = selectedOption.value;
 			var capacidad = selectedOption.getAttribute("data-capacidad");
 			var capacidadVueloInput = document.getElementById("capacidadVuelo");

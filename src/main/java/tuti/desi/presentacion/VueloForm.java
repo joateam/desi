@@ -13,8 +13,6 @@ public class VueloForm {
     private LocalTime horaPartida;
     private Long avionId;
 
-    // Getters y setters
-
     public String getNumeroVuelo() {
         return numeroVuelo;
     }

@@ -3,9 +3,6 @@ package tuti.desi.excepciones;
 public class Excepcion extends Exception{
 
 	
-	/*
-	 * Atributo al que está asociado el error
-	 */
 	private  String atributo;
 	
 	public Excepcion() {

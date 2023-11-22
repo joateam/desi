@@ -27,8 +27,6 @@ public class Aeronave {
         this.nroAsientosXFila = nroAsientosXFila;
     }
 
-    // Métodos getter y setter
-
     public Long getId() {
         return id;
     }
