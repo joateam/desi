@@ -5,7 +5,6 @@ import java.util.List;
 
 import tuti.desi.entidades.Ciudad;
 import tuti.desi.excepciones.Excepcion;
-import tuti.desi.presentacion.CiudadesBuscarForm;
 /**
  * Clase que permite gestionar la entidad Ciudad en el sistema.
  * @author kuttel
@@ -28,13 +27,12 @@ public interface CiudadService {
 	 * @return Ciudad encontrada
 	 */
 	Ciudad getById(Long idCiudad) ;
-	
-	List<Ciudad> filter(CiudadesBuscarForm filter) throws Excepcion;
+
 
 	void deleteByid(Long id);
 
 	void save(Ciudad c) throws Excepcion;
 	
-	Ciudad findByNombreAndProvinciaId(String nombre, Long idProvincia);
+	Ciudad findByNombre(String nombre);
 
 }

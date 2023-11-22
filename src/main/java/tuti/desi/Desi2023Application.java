@@ -11,16 +11,12 @@ import org.springframework.context.annotation.Bean;
 import tuti.desi.adicionales.ValoresPreseteados;
 import tuti.desi.entidades.Aeronave;
 import tuti.desi.entidades.Ciudad;
-import tuti.desi.entidades.Provincia;
 import tuti.desi.servicios.AeronaveServiceImpl;
 import tuti.desi.servicios.CiudadServiceImpl;
-import tuti.desi.servicios.ProvinciaServiceImpl;
 
 @SpringBootApplication
 public class Desi2023Application {
 
-	@Autowired
-	private ProvinciaServiceImpl provinciaServiceImpl;
 	@Autowired
 	private CiudadServiceImpl ciudadServiceImpl;
 	@Autowired
@@ -37,39 +33,30 @@ public class Desi2023Application {
 	@Bean
 	public CommandLineRunner initData() {
 		return args -> {
-			// Cargamos provincias por defecto al iniciar la aplicación
-			List<String> nombresProvincias = valoresPreseteados.nombresProvincias;
-
-			for (String nombreProvincia : nombresProvincias) {
-				if (provinciaServiceImpl.findByNombre(nombreProvincia) == null) {
-					provinciaServiceImpl.save(new Provincia(nombreProvincia));
-				}
-			}
-			List<Provincia> provincias = provinciaServiceImpl.getAll();
+	
 
 			//Cargamos nonbres de ciudades de Santa Fe
 			List<String> nombresCiudadesSantaFe = valoresPreseteados.nombresCiudadesSantaFe;
 			for (String nombreCiudadSantaFe : nombresCiudadesSantaFe) {
-				if (ciudadServiceImpl.findByNombreAndProvinciaId(nombreCiudadSantaFe,
-						provincias.get(0).getId()) == null) {
-					ciudadServiceImpl.save(new Ciudad(nombreCiudadSantaFe, provincias.get(0)));
+				if (ciudadServiceImpl.findByNombre(nombreCiudadSantaFe) == null) {
+					ciudadServiceImpl.save(new Ciudad(nombreCiudadSantaFe));
 				}
 			}
 
 			//Cargamos nonbres de ciudades de Buenos Aires
 			List<String> nombresciudadesBsAs = valoresPreseteados.nombresCiudadesBuenosAires;
+			
 			for (String nombreCiudadBsAs : nombresciudadesBsAs) {
-				if (ciudadServiceImpl.findByNombreAndProvinciaId(nombreCiudadBsAs, provincias.get(2).getId()) == null) {
-					ciudadServiceImpl.save(new Ciudad(nombreCiudadBsAs, provincias.get(2)));
+				if (ciudadServiceImpl.findByNombre(nombreCiudadBsAs) == null) {
+					ciudadServiceImpl.save(new Ciudad(nombreCiudadBsAs));
 				}
 			}
 
 			//Cargamos nonbres de ciudades de Entre Ríos
 			List<String> nombresCiudadesEntreRios = valoresPreseteados.nombreCiudadesEntreRios;
 			for (String nombreCiudadEntreRios : nombresCiudadesEntreRios) {
-				if (ciudadServiceImpl.findByNombreAndProvinciaId(nombreCiudadEntreRios,
-						provincias.get(2).getId()) == null) {
-					ciudadServiceImpl.save(new Ciudad(nombreCiudadEntreRios, provincias.get(2)));
+				if (ciudadServiceImpl.findByNombre(nombreCiudadEntreRios) == null) {
+					ciudadServiceImpl.save(new Ciudad(nombreCiudadEntreRios));
 				}
 			}
 			

@@ -10,4 +10,5 @@ import tuti.desi.entidades.Aeronave;
 public interface IAeronavesRepo extends JpaRepository<Aeronave, Long>{
 
 	Aeronave findByNombre(String nombre);
+	
 }

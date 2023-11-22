@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,8 @@ public class Vuelo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String numeroVuelo;
+	@Column(unique = true)
+    private String numeroVuelo;
 
 	@ManyToOne
 	@JoinColumn(name = "ciudad_origen_id")
@@ -29,8 +31,6 @@ public class Vuelo {
 	@ManyToOne
 	@JoinColumn(name = "ciudad_destino_id")
 	private Ciudad destino;
-
-	private List<String> tipoVueloPosibilidades = new ArrayList<>(Arrays.asList("nacional", "internacional"));
 
 	private String tipoVuelo;
 	private float precioPasaje;
@@ -72,10 +72,6 @@ public class Vuelo {
 
 	public void setDestino(Ciudad destino) {
 		this.destino = destino;
-	}
-
-	public List<String> getTipoVueloPosibilidades() {
-		return tipoVueloPosibilidades;
 	}
 
 	public String getTipoVuelo() {
