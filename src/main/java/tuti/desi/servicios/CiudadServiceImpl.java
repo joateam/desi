@@ -5,6 +5,7 @@
 package tuti.desi.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import tuti.desi.accesoDatos.ICiudadRepo;
 import tuti.desi.entidades.Ciudad;
 import tuti.desi.excepciones.Excepcion;
-import tuti.desi.presentacion.CiudadesBuscarForm;
 
 @Service
 public class CiudadServiceImpl implements CiudadService {
@@ -22,49 +22,41 @@ public class CiudadServiceImpl implements CiudadService {
 	ICiudadRepo repo;
 
 	@Override
-	public List<Ciudad> getAll() {
-		
+	public List<Ciudad> getAll() {		
 		return repo.findAll();
 	}
 
 
 
 	@Override
-	@Deprecated
 	public Ciudad getById(Long idCiudad) {
 
 		return repo.findById(idCiudad).get();
 	}
-	
-	@Override
-	public List<Ciudad> filter(CiudadesBuscarForm filter) throws Excepcion
-	{
-		//ver https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html
-		if(filter.getNombre()==null && filter.getProvinciaSeleccionada()==null)
-			//return repo.findAll();
-			throw new Excepcion("Es necesario al menos un filtro");
-		else
-			return repo.findByNombreOrIdProvincia(filter.getNombre(),filter.getProvinciaSeleccionada());
-				
-	}
-
-
 
 	@Override
 	public void deleteByid(Long id) {
 		repo.deleteById(id);
 		
 	}
-
-
+	
+	
+	 @Override
+	    public Ciudad findByNombre(String nombre) {
+		 Optional<Ciudad> optionalCiudad = Optional.ofNullable(repo.findByNombre(nombre));
+		 return optionalCiudad.orElseThrow(() -> new CiudadNotFoundException("Ciudad no encontrada con el nombre: " + nombre));
+	    }
 
 	@Override
 	public void save(Ciudad c) throws Excepcion {
-		if(c.getId()==null && !repo.findByNombreAndIdProvincia(c.getNombre(), c.getProvincia().getId()).isEmpty()) //estoy dando de alta una nueva ciudad y ya existe una igual?
-			throw new Excepcion("Ya existe una ciudad con el mismo nombre, para la misma provincia");  
-		else
-			repo.save(c);
-		
+		repo.save(c);
 	}
+	
+	public class CiudadNotFoundException extends RuntimeException {
+	    public CiudadNotFoundException(String mensaje) {
+	        super(mensaje);
+	    }
+	}
+
 
 }
