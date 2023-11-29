@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import tuti.desi.accesoDatos.IVuelosRepo;
+import tuti.desi.entidades.Ciudad;
 import tuti.desi.entidades.Vuelo;
 
 @Service
@@ -46,4 +47,9 @@ public class VueloServiceImpl implements VueloService {
 	    public boolean existsFlightOnDateAndAircraft(LocalDate fechaPartida, Long avionId) {
 	             return repo.existsByFechaPartidaAndAvionId(fechaPartida, avionId);
 	    }
+
+	@Override
+	public List<Vuelo> ListarVuelos(LocalDate fecha, Ciudad origen, Ciudad destino, String tipoVuelo) {
+		return repo.findByFechaPartidaAndOrigenAndDestinoAndTipoVuelo(fecha,origen,destino,tipoVuelo);
+	}
 }
