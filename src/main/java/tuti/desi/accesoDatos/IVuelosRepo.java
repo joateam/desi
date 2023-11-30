@@ -13,4 +13,6 @@ public interface IVuelosRepo extends JpaRepository<Vuelo, Long>{
 	boolean existsByFechaPartidaAndAvionId(LocalDate fechaPartida, Long avionId);
 
 	List<Vuelo> findByFechaPartidaAndOrigenAndDestinoAndTipoVuelo(LocalDate fecha, Ciudad origen, Ciudad destino, String tipoVuelo);
+
+	List<Vuelo> findByFechaPartida(LocalDate fecha);
 }

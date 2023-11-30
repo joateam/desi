@@ -50,7 +50,7 @@
 	</nav>
 	
 	<main class="container mt-4">
-		<form action="/listarvuelos" method="get" th:object="${ListarVuelosForm}" >
+		<form id="formID" action="/listarvuelos" method="get" th:object="${FiltroVuelos}" >
 			
 				<div class="row  g-0 d-flex ">
 					<div class="form-group col-md-3 d-flex mb-3">
@@ -88,6 +88,9 @@
 				</div>
 			
 		</form>
+		<div id="resultadosBusqueda" class="row  g-0">
+			
+		</div>
 	</main>
 
 
@@ -102,5 +105,60 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('formID').addEventListener('submit', function (event) {
+        // Evitar que el formulario se envíe de manera tradicional
+        event.preventDefault();
+
+        // Obtener valores del formulario
+        var fechaPartida = document.getElementById('fechaPartida').value;
+        var origen = document.getElementById('origen').value;
+        var destino = document.getElementById('destino').value;
+        var tipoVuelo = document.getElementById('tipoVuelo').value;
+
+        // Realizar la llamada al servicio (puedes usar Fetch API, Axios, etc.)
+        fetch('/listarvuelos/filtrar', {
+            method: 'POST', // o 'GET' según tu implementación
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fechaPartida: fechaPartida,
+                origen: origen,
+                destino: destino,
+                tipoVuelo: tipoVuelo
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+			var divDeResultadosBusqueda = document.getElementById('resultadosBusqueda');
+            divDeResultadosBusqueda.innerHTML = '<h5>Listado filtrado:</h52>';
+            
+			data.forEach((vuelo,index) => {
+	        const id = vuelo.id;
+	        const numeroVuelo = vuelo.numeroVuelo;
+	        const origenNombre = vuelo.origen.nombre;
+	        const destinoNombre = vuelo.destino.nombre;
+	        const tipoVuelo = vuelo.tipoVuelo;
+	        const precioPasaje = vuelo.precioPasaje;
+	        const fechaPartida = vuelo.fechaPartida;
+	        const horaPartida = vuelo.horaPartida;
+	        const avionNombre = vuelo.avion.nombre;
+	        const filas = vuelo.avion.cantFilas;
+	        const asientosxfila = vuelo.avion.nroAsientosXFila;
+	        const avionCapacidad = filas*asientosxfila;
+	        
+	        const bgColorClass = index % 2 === 0 ? 'bg-info' : 'bg-light';
+	        
+           divDeResultadosBusqueda.innerHTML += '<div class="row '  + bgColorClass  + ' text-muted p-3">'+ '<span class="col-md-2 ">'+   " Fecha: "+  fechaPartida + '</span>' + '<span class="col-md-2">'+   " Nro Vuelo: "+ numeroVuelo +'</span>'+ '<span class="col-md-2">' + " Tipo de Vuelo: " + tipoVuelo +'</span>'+ '<span class="col-md-2">' + " Asientos disponibles: "+ avionCapacidad +'</span>'+'</div>';
+            
+            
+            });
+            
+            
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 </body>
 </html>

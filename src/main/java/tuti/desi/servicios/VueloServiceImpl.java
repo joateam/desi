@@ -52,4 +52,8 @@ public class VueloServiceImpl implements VueloService {
 	public List<Vuelo> ListarVuelos(LocalDate fecha, Ciudad origen, Ciudad destino, String tipoVuelo) {
 		return repo.findByFechaPartidaAndOrigenAndDestinoAndTipoVuelo(fecha,origen,destino,tipoVuelo);
 	}
+	@Override
+	public List<Vuelo> ListarVuelos(LocalDate fecha) {
+		return repo.findByFechaPartida(fecha);
+	}
 }
