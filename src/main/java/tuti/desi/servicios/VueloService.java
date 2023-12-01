@@ -8,11 +8,12 @@ import tuti.desi.entidades.Vuelo;
 
 public interface VueloService {
     List<Vuelo> getAll();
-    List<Vuelo> ListarVuelos(LocalDate fecha,Ciudad origen,Ciudad destino,String tipoVuelo);
-    List<Vuelo> ListarVuelos(LocalDate fecha);
+    List<Vuelo> ListarVuelos(LocalDate fecha,Long origenid,Long destinoid,String tipoVuelo);
+    List<Vuelo> ListarVuelosFecha(LocalDate fecha);
     Vuelo getById(Long id);
     void save(Vuelo vuelo);
     
     
     public boolean existsFlightOnDateAndAircraft(LocalDate fechaPartida, Long avionId);
+	
 }

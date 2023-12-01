@@ -77,12 +77,13 @@
 					<div class="form-group col-md-3 d-flex mb-3 ">
 					<label for="tipoVuelo" class="col-form-label auto me-2  ps-2">Tipo de vuelo:</label>
 					<select id="tipoVuelo" class="form-control col" name="tipoVuelo">
+						<option value="">Seleccionar</option>
 						<option value="nacional">Nacional</option>
 						<option value="internacional">Internacional</option>
 					</select>
 				</div>
-				<div class="row  g-0  ">
-					<button type="submit" class="btn btn-primary">Buscar Vuelos</button>
+				<div class="row justify-content-center g-0  ">
+					<button type="submit" class="btn col-4 btn-primary">Buscar Vuelos</button>
 				</div>
 					
 				</div>
@@ -131,29 +132,40 @@
         })
         .then(response => response.json())
         .then(data => {
+			
 			var divDeResultadosBusqueda = document.getElementById('resultadosBusqueda');
-            divDeResultadosBusqueda.innerHTML = '<h5>Listado filtrado:</h52>';
+			divDeResultadosBusqueda.innerHTML = '';
             
-			data.forEach((vuelo,index) => {
-	        const id = vuelo.id;
-	        const numeroVuelo = vuelo.numeroVuelo;
-	        const origenNombre = vuelo.origen.nombre;
-	        const destinoNombre = vuelo.destino.nombre;
-	        const tipoVuelo = vuelo.tipoVuelo;
-	        const precioPasaje = vuelo.precioPasaje;
-	        const fechaPartida = vuelo.fechaPartida;
-	        const horaPartida = vuelo.horaPartida;
-	        const avionNombre = vuelo.avion.nombre;
-	        const filas = vuelo.avion.cantFilas;
-	        const asientosxfila = vuelo.avion.nroAsientosXFila;
-	        const avionCapacidad = filas*asientosxfila;
-	        
-	        const bgColorClass = index % 2 === 0 ? 'bg-info' : 'bg-light';
-	        
-           divDeResultadosBusqueda.innerHTML += '<div class="row '  + bgColorClass  + ' text-muted p-3">'+ '<span class="col-md-2 ">'+   " Fecha: "+  fechaPartida + '</span>' + '<span class="col-md-2">'+   " Nro Vuelo: "+ numeroVuelo +'</span>'+ '<span class="col-md-2">' + " Tipo de Vuelo: " + tipoVuelo +'</span>'+ '<span class="col-md-2">' + " Asientos disponibles: "+ avionCapacidad +'</span>'+'</div>';
+             if (data.length === 0) {
+				 divDeResultadosBusqueda.innerHTML = '<div class="row text-center "><h3 class="col-12   bg-light text-info mt-3 mb-3 " > Vuelos no encontrados </h3></div>';
+			 } 
+             
+             else {
+            
+	            divDeResultadosBusqueda.innerHTML = '<div class="row text-center "><h3 class="col-12   bg-light text-info mt-3 mb-3 " > Vuelos encontrados </h3></div>';	
+				
+				data.forEach((vuelo,index) => {
+		        const id = vuelo.id;
+		        const numeroVuelo = vuelo.numeroVuelo;
+		        const origenNombre = vuelo.origen.nombre;
+		        const destinoNombre = vuelo.destino.nombre;
+		        const tipoVuelo = vuelo.tipoVuelo;
+		        const precioPasaje = vuelo.precioPasaje;
+		        const fechaPartida = vuelo.fechaPartida;
+		        const horaPartida = vuelo.horaPartida;
+		        const avionNombre = vuelo.avion.nombre;
+		        const filas = vuelo.avion.cantFilas;
+		        const asientosxfila = vuelo.avion.nroAsientosXFila;
+		        const avionCapacidad = filas*asientosxfila;
+		        
+		        const bgColorClass = index % 2 === 0 ? 'bg-info' : 'bg-light';
+		        
+	           divDeResultadosBusqueda.innerHTML += '<div class="row '  + bgColorClass  + ' text-muted p-3">'+ '<span class="col-md-2 ">'+   " Fecha: "+  fechaPartida + '</span>' + '<span class="col-md-2 ">'+   " Hora: "+  horaPartida  + '</span>' + '<span class="col-md-2">'+   " Nro Vuelo: "+ numeroVuelo +'</span>'+ '<span class="col-md-2">' + " Tipo de Vuelo: " + tipoVuelo +'</span>'+ '<span class="col-md-2">' + " Asientos disponibles: "+ avionCapacidad +'</span>'+'</div>';
             
             
-            });
+            })}
+            
+            ;
             
             
         })

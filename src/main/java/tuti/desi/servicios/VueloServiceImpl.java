@@ -49,11 +49,14 @@ public class VueloServiceImpl implements VueloService {
 	    }
 
 	@Override
-	public List<Vuelo> ListarVuelos(LocalDate fecha, Ciudad origen, Ciudad destino, String tipoVuelo) {
-		return repo.findByFechaPartidaAndOrigenAndDestinoAndTipoVuelo(fecha,origen,destino,tipoVuelo);
+	public List<Vuelo> ListarVuelos(LocalDate fecha, Long origenId, Long destinoId, String tipoVuelo) {
+		return repo.findByDateAndCitiesAndType(fecha,origenId,destinoId,tipoVuelo);
 	}
+	
 	@Override
-	public List<Vuelo> ListarVuelos(LocalDate fecha) {
-		return repo.findByFechaPartida(fecha);
+	public List<Vuelo> ListarVuelosFecha(LocalDate fecha){
+		return repo.findByFechaPartidaOrderByHoraPartida(fecha);
 	}
+	
+	
 }

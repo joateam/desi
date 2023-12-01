@@ -1,5 +1,6 @@
 package tuti.desi.presentacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,19 @@ public class ListarVuelosController {
 	
 	@PostMapping("/filtrar")
     public ResponseEntity<Object>  mostrarListarVuelos(@RequestBody FiltroVuelos filtroVuelos) {
-        
-		List<Vuelo> resultado = this.vueloservice.ListarVuelos(
-				filtroVuelos.getFechaPartida());
+		List<Vuelo> resultado;
+				
+		if(	filtroVuelos.getCiudadOrigenId()==null && filtroVuelos.getCiudadDestinoId()== null && filtroVuelos.getTipoVuelo().equals("")){
+			
+			resultado = this.vueloservice.ListarVuelosFecha(filtroVuelos.getFechaPartida());
+		
+		}else {
+			resultado = this.vueloservice.ListarVuelos(
+				filtroVuelos.getFechaPartida(),
+				filtroVuelos.getCiudadOrigenId(),
+				filtroVuelos.getCiudadDestinoId(),
+				filtroVuelos.getTipoVuelo());
+		}
 		
 		return ResponseEntity.ok().body(resultado);
 				
