@@ -157,10 +157,20 @@
 		        const filas = vuelo.avion.cantFilas;
 		        const asientosxfila = vuelo.avion.nroAsientosXFila;
 		        const avionCapacidad = filas*asientosxfila;
+		        const estado = vuelo.estado;
 		        
 		        const bgColorClass = index % 2 === 0 ? 'bg-info' : 'bg-light';
 		        
-	           divDeResultadosBusqueda.innerHTML += '<div class="row '  + bgColorClass  + ' text-muted p-3">'+ '<span class="col-md-2 ">'+   " Fecha: "+  fechaPartida + '</span>' + '<span class="col-md-2 ">'+   " Hora: "+  horaPartida  + '</span>' + '<span class="col-md-2">'+   " Nro Vuelo: "+ numeroVuelo +'</span>'+ '<span class="col-md-2">' + " Tipo de Vuelo: " + tipoVuelo +'</span>'+ '<span class="col-md-2">' + " Asientos disponibles: "+ avionCapacidad +'</span>'+'</div>';
+	           divDeResultadosBusqueda.innerHTML += 
+	           '<div class="row '  + bgColorClass  + 
+	           ' text-muted p-3">'+ '<span class="col-md-2 ">'
+				   +   " Fecha: "+  fechaPartida + '</span>' 
+				   + '<span class="col-md-2 ">'+   " Hora: "+  horaPartida  + '</span>' 
+				   + '<span class="col-md-2">'+   " Nro Vuelo: "+ numeroVuelo +'</span>'
+				   + '<span class="col-md-2">' + " Tipo de Vuelo: " + tipoVuelo +'</span>'
+				   + '<span class="col-md-2">' + " Asientos disponibles: "+ avionCapacidad +'</span>'
+				   + '<span class="col-md-2">' + " Estado: "+ estado +'</span>'
+				   '</div>';
             
             
             })}

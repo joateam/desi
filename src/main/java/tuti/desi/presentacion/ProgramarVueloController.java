@@ -66,6 +66,7 @@ public class ProgramarVueloController {
         vuelo.setFechaPartida(vueloForm.getFechaPartida());
         vuelo.setHoraPartida(vueloForm.getHoraPartida());
         vuelo.setAvion(avion);
+        vuelo.setEstado("Normal");
         
         
         if (servicioVuelo.existsFlightOnDateAndAircraft(vueloForm.getFechaPartida(), vueloForm.getAvionId())) {

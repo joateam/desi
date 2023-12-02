@@ -37,11 +37,35 @@ public class Vuelo {
 
 	private LocalDate fechaPartida;
 	private LocalTime horaPartida;
+	
+	private String estado;
 
+	
+	
+	
 	@ManyToOne
     @JoinColumn(name = "aeronave_id")
     private Aeronave avion;
+	
+	public Vuelo(){}
+	
+	public Vuelo( String numeroVuelo, Ciudad origen, Ciudad destino, String tipoVuelo, float precioPasaje,
+			LocalDate fechaPartida, LocalTime horaPartida, String estado, Aeronave avion) {
+		super();
+		this.numeroVuelo = numeroVuelo;
+		this.origen = origen;
+		this.destino = destino;
+		this.tipoVuelo = tipoVuelo;
+		this.precioPasaje = precioPasaje;
+		this.fechaPartida = fechaPartida;
+		this.horaPartida = horaPartida;
+		this.estado = estado;
+		this.avion = avion;
+	}
 
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +81,7 @@ public class Vuelo {
 	public void setNumeroVuelo(String numeroVuelo) {
 		this.numeroVuelo = numeroVuelo;
 	}
+
 
 	public Ciudad getOrigen() {
 		return origen;
@@ -112,6 +137,14 @@ public class Vuelo {
 
 	public void setAvion(Aeronave avion) {
 		this.avion = avion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

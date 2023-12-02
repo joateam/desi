@@ -1,14 +1,27 @@
 package tuti.desi.adicionales;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import tuti.desi.entidades.Aeronave;
+import tuti.desi.entidades.Ciudad;
+import tuti.desi.entidades.Vuelo;
+import tuti.desi.servicios.CiudadService;
+import tuti.desi.servicios.CiudadServiceImpl;
+import tuti.desi.servicios.VueloServiceImpl;
 
 //Agregamos component para que pueda ser tomado por @Bean
 @Component
 public class ValoresPreseteados {
+	@Autowired
+	private VueloServiceImpl vueloServiceImpl;
 	
 	public List<String> nombresProvincias = List.of("Santa Fe", "Buenos Aires", "Entre Ríos");
 	public List<String> nombresCiudadesSantaFe = List.of(
@@ -36,4 +49,52 @@ public class ValoresPreseteados {
             new Aeronave("McDonnell Douglas MD-11", 40, 11)
     );
 	
+	/*
+		this.numeroVuelo = numeroVuelo;
+		this.origen = origen;
+		this.destino = destino;
+		this.tipoVuelo = tipoVuelo;
+		this.precioPasaje = precioPasaje;
+		this.fechaPartida = fechaPartida;
+		this.horaPartida = horaPartida;
+		this.estado = estado;
+		this.avion = avion;*/
+		
+	
+	// CARGAMOS LOS VUELOS
+	public  void  cargarVuelos(List<Aeronave> listaAeronaves, List<Ciudad> listaCiudades) {
+		
+		
+		/*
+		List<Ciudad> listaCiudades = new ArrayList<Ciudad>();
+		
+		for (String nombreCiudadSantaFe : nombresCiudadesSantaFe) {
+			listaCiudades.add(new Ciudad(nombreCiudadSantaFe));
+		}*/
+		
+
+	
+		
+		
+		
+		
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			
+			
+			int hora = random.nextInt(24);
+			int min = random.nextInt(60);
+			LocalTime horaVuelo = LocalTime.of(hora, min);
+			
+			
+			LocalDate fecha = LocalDate.parse("2023-12-"+(i+10),formatter);
+			
+			Vuelo vuelo = new Vuelo(String.valueOf(i+1),listaCiudades.get(i),listaCiudades.get(i+1),"nacional",((i+1)*10000),fecha,horaVuelo,"Normal",listaAeronaves.get(i));
+			vueloServiceImpl.save(vuelo);
+		}
+		
+	}
+			
 }
