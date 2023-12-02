@@ -14,7 +14,7 @@ public class Aeronave {
 
 
     private String nombre;
-    
+
     private Integer cantFilas, nroAsientosXFila;
 
     public Aeronave() {
@@ -58,7 +58,7 @@ public class Aeronave {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public Integer capacidadVuelo() {
 		return (this.cantFilas * this.nroAsientosXFila);
 	}

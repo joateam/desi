@@ -7,13 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import tuti.desi.entidades.Ciudad;
 import tuti.desi.entidades.Vuelo;
 
 public interface IVuelosRepo extends JpaRepository<Vuelo, Long>{
 
 	boolean existsByFechaPartidaAndAvionId(LocalDate fechaPartida, Long avionId);
-	
+
 	@Query("SELECT v FROM Vuelo v WHERE v.fechaPartida = :fechaPartida " +
             "AND (:origenId IS NULL OR v.origen = :origenId) " +
             "AND (:destinoId IS NULL OR v.destino = :destinoId) " +
@@ -24,6 +23,6 @@ public interface IVuelosRepo extends JpaRepository<Vuelo, Long>{
             @Param("destinoId") Long destinoId,
             @Param("tipoVuelo") String tipoVuelo
     );
-	
+
 	List<Vuelo> findByFechaPartidaOrderByHoraPartida(LocalDate fecha);
 }

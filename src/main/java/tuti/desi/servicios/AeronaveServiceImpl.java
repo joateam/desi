@@ -1,6 +1,5 @@
 package tuti.desi.servicios;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class AeronaveServiceImpl implements AeronaveService {
 	}
 
 	@Override
-	public Aeronave findByNombre(String name) {		
+	public Aeronave findByNombre(String name) {
 		return repo.findByNombre(name);
 	}
 

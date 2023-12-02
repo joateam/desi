@@ -8,7 +8,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import tuti.desi.accesoDatos.IVuelosRepo;
-import tuti.desi.entidades.Ciudad;
 import tuti.desi.entidades.Vuelo;
 
 @Service
@@ -35,7 +34,7 @@ public class VueloServiceImpl implements VueloService {
              throw new VueloDuplicadoException("El número de vuelo ya existe");
          }
     }
-    
+
     public class VueloDuplicadoException extends RuntimeException {
         public VueloDuplicadoException(String message) {
             super(message);
@@ -52,11 +51,11 @@ public class VueloServiceImpl implements VueloService {
 	public List<Vuelo> ListarVuelos(LocalDate fecha, Long origenId, Long destinoId, String tipoVuelo) {
 		return repo.findByDateAndCitiesAndType(fecha,origenId,destinoId,tipoVuelo);
 	}
-	
+
 	@Override
 	public List<Vuelo> ListarVuelosFecha(LocalDate fecha){
 		return repo.findByFechaPartidaOrderByHoraPartida(fecha);
 	}
-	
-	
+
+
 }

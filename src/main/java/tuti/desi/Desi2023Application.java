@@ -1,7 +1,6 @@
 package tuti.desi;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,7 +34,7 @@ public class Desi2023Application {
 	@Bean
 	public CommandLineRunner initData() {
 		return args -> {
-	
+
 
 			//Cargamos nonbres de ciudades de Santa Fe
 			List<String> nombresCiudadesSantaFe = valoresPreseteados.nombresCiudadesSantaFe;
@@ -46,13 +45,13 @@ public class Desi2023Application {
 				catch(CiudadNotFoundException e){
 					ciudadServiceImpl.save(new Ciudad(nombreCiudadSantaFe));
 				}
-					
+
 				}
-			
+
 
 			//Cargamos nonbres de ciudades de Buenos Aires
 			List<String> nombresciudadesBsAs = valoresPreseteados.nombresCiudadesBuenosAires;
-			
+
 			for (String nombreCiudadBsAs : nombresciudadesBsAs) {
 				try {
 					ciudadServiceImpl.findByNombre(nombreCiudadBsAs);
@@ -71,7 +70,7 @@ public class Desi2023Application {
 					ciudadServiceImpl.save(new Ciudad(nombreCiudadEntreRios));
 				}
 			}
-			
+
 			//Cargamos nonbres las Aeronaves
 			List<Aeronave> aeronaves = valoresPreseteados.aeronaves;
 			for (Aeronave aeronave : aeronaves) {
@@ -79,9 +78,9 @@ public class Desi2023Application {
 					aeronaveServicImpl.save(aeronave);
 				}
 			}
-			
+
 			valoresPreseteados.cargarVuelos(aeronaveServicImpl.getAll(),ciudadServiceImpl.getAll());
-			
+
 		};
 	}
 

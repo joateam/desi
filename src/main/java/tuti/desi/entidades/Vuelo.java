@@ -2,9 +2,6 @@ package tuti.desi.entidades;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,18 +34,18 @@ public class Vuelo {
 
 	private LocalDate fechaPartida;
 	private LocalTime horaPartida;
-	
+
 	private String estado;
 
-	
-	
-	
+
+
+
 	@ManyToOne
     @JoinColumn(name = "aeronave_id")
     private Aeronave avion;
-	
+
 	public Vuelo(){}
-	
+
 	public Vuelo( String numeroVuelo, Ciudad origen, Ciudad destino, String tipoVuelo, float precioPasaje,
 			LocalDate fechaPartida, LocalTime horaPartida, String estado, Aeronave avion) {
 		super();
@@ -63,9 +60,9 @@ public class Vuelo {
 		this.avion = avion;
 	}
 
-	
-	
-	
+
+
+
 	public Long getId() {
 		return id;
 	}

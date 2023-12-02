@@ -2,12 +2,12 @@ package tuti.desi.excepciones;
 
 public class Excepcion extends Exception{
 
-	
+
 	private  String atributo;
-	
+
 	public Excepcion() {
 		super();
-		
+
 	}
 
 	public Excepcion(String mensaje) {
@@ -27,6 +27,6 @@ public class Excepcion extends Exception{
 		this.atributo = atributo;
 	}
 
-	
+
 
 }

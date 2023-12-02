@@ -7,7 +7,7 @@ public class FiltroVuelos {
 	private Long ciudadOrigenId;
 	private Long ciudadDestinoId;
 	private String tipoVuelo;
-	
+
 	public LocalDate getFechaPartida() {
 		return fechaPartida;
 	}
@@ -32,6 +32,6 @@ public class FiltroVuelos {
 	public void setCiudadDestinoId(Long ciudadDestinoId) {
 		this.ciudadDestinoId = ciudadDestinoId;
 	}
-	
-	
+
+
 }

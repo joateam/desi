@@ -83,5 +83,5 @@ public class VueloForm {
 				+ ", tipoVuelo=" + tipoVuelo + ", precioPasaje=" + precioPasaje + ", fechaPartida=" + fechaPartida
 				+ ", horaPartida=" + horaPartida + ", avionId=" + avionId + "]";
 	}
-    
+
 }

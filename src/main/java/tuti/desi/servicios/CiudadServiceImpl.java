@@ -17,12 +17,12 @@ import tuti.desi.excepciones.Excepcion;
 @Service
 public class CiudadServiceImpl implements CiudadService {
 //	Logger LOG = LoggerFactory.getLogger(CiudadService.class);
-//	
+//
 	@Autowired
 	ICiudadRepo repo;
 
 	@Override
-	public List<Ciudad> getAll() {		
+	public List<Ciudad> getAll() {
 		return repo.findAll();
 	}
 
@@ -37,10 +37,10 @@ public class CiudadServiceImpl implements CiudadService {
 	@Override
 	public void deleteByid(Long id) {
 		repo.deleteById(id);
-		
+
 	}
-	
-	
+
+
 	 @Override
 	    public Ciudad findByNombre(String nombre) {
 		 Optional<Ciudad> optionalCiudad = Optional.ofNullable(repo.findByNombre(nombre));
@@ -51,7 +51,7 @@ public class CiudadServiceImpl implements CiudadService {
 	public void save(Ciudad c) throws Excepcion {
 		repo.save(c);
 	}
-	
+
 	public class CiudadNotFoundException extends RuntimeException {
 	    public CiudadNotFoundException(String mensaje) {
 	        super(mensaje);

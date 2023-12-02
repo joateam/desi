@@ -13,14 +13,14 @@ import tuti.desi.excepciones.Excepcion;
 
 public interface CiudadService {
 
-	
+
 
 	/**
 	 * Obtiene la lista completa de ciudades
 	 * @return Todas las ciudades
 	 */
 	List<Ciudad> getAll();
-	
+
 	/**
 	 * Obtiene una ciudad determinada
 	 * @param idCiudad Identificador de la ciudad buscada
@@ -32,7 +32,7 @@ public interface CiudadService {
 	void deleteByid(Long id);
 
 	void save(Ciudad c) throws Excepcion;
-	
+
 	Ciudad findByNombre(String nombre);
 
 }
